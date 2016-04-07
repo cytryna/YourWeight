@@ -21,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EditText editText = (EditText) findViewById(R.id.weight);
                 String text = editText.getText().toString();
-                Double weightToday = Double.parseDouble(text);
+
+                Double weightToday = Double.parseDouble(text.isEmpty() ? "120.5" : text);
 //                Toast.makeText(getApplicationContext(), "editText.getText() " + weightToday, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), WeightHistoryActivity.class);
                 startActivity(intent);
