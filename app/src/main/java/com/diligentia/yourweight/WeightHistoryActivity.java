@@ -2,17 +2,15 @@ package com.diligentia.yourweight;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.domain.Item;
+import com.domain.ItemsAdapter;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -20,20 +18,30 @@ import java.util.Random;
  */
 public class WeightHistoryActivity extends Activity {
 
-    Map<Date, Double> weightMap;
-    String[] mobileArray = {"Android","IPhone","WindowsMobile","Blackberry","WebOS","Ubuntu","Windows7","Max OS X"};
+    ArrayList<Item> weightList;
+    String[] mobileArray = {"Android", "IPhone", "WindowsMobile", "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        weightMap = new HashMap<>();
-        fillTemplateWeight();
+        weightList  = new ArrayList<Item>();
         setContentView(R.layout.activity_weight_history);
 
 
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_listview, mobileArray);
+        // Construct the data source
 
+        fillTemplateWeight();
+// Create the adapter to convert the array to views
+
+        ItemsAdapter adapter = new ItemsAdapter(this, weightList);
+// Attach the adapter to a ListView
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(adapter);
+
+//        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_listview, mobileArray);
+//
+//        ListView listView = (ListView) findViewById(R.id.listView);
+//        listView.setAdapter(adapter);
 
 
 //        Button ok = (Button) findViewById(R.id.ok);
@@ -64,8 +72,7 @@ public class WeightHistoryActivity extends Activity {
         for (int i = 0; i < 100; i++) {
             cal.add(Calendar.DATE, 1);
             randomValue = 100 + (130 - 100) * r.nextDouble();
-            weightMap.put(cal.getTime(), randomValue);
-            System.err.println(cal.getTime() + " " + randomValue);
+            weightList.add(new Item(cal.getTime(), randomValue));
         }
     }
 
