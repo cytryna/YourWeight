@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 System.err.println("add_rss_button");
-                Intent intent = new Intent(getApplicationContext(), AddWeightActivity.class);
+                Intent intent = new Intent(getApplicationContext(), WeightHistoryActivity.class);
                 startActivity(intent);
             }
         });

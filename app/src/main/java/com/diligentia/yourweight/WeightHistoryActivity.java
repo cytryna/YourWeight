@@ -10,12 +10,12 @@ import android.widget.Toast;
 /**
  * Created by rwichrowski on 07.04.16.
  */
-public class AddWeightActivity extends Activity {
+public class WeightHistoryActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_new_weight);
+        setContentView(R.layout.activity_weight_history);
 
         Button ok = (Button) findViewById(R.id.ok);
 

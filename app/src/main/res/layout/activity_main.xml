@@ -23,6 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
         android:ems="10"
+        android:digits="0123456789."
+        android:inputType="numberDecimal"
         android:hint="Waga" >
         <requestFocus />
     </EditText>
