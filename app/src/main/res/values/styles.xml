@@ -1,12 +1,24 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@drawable/background</item>
+        <!--<item name="android:windowBackground">@drawable/background</item>
+        Aplikacja dostaje outOfMemory podczas zmiany oriantacji urządzenia jak jest grafika w tle-->
+
+    </style>
+
+    <style name="HomeLabel" parent="@android:style/Widget">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#638EBD</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:layout_margin">20dp</item>
+        <item name="android:shadowColor">#000</item>
+        <item name="android:shadowDx">2.0</item>
+        <item name="android:shadowDy">2.0</item>
+        <item name="android:shadowRadius">2</item>
     </style>
 
 </resources>

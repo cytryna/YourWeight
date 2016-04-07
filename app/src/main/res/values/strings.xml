@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">YourWeight</string>
+    <string name="insertNewWeight">Wprowadź dzisiejszą wagę</string>
+    <string name="add_weight_button">Dodaj wagę</string>
 </resources>
