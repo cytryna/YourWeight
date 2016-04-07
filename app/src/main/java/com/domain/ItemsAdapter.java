@@ -29,8 +29,8 @@ public class ItemsAdapter extends ArrayAdapter<Item> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_listview, parent, false);
         }
         // Lookup view for data population
-        TextView tvName = (TextView) convertView.findViewById(R.id.tvName);
-        TextView tvHome = (TextView) convertView.findViewById(R.id.tvHome);
+        TextView tvName = (TextView) convertView.findViewById(R.id.txDate);
+        TextView tvHome = (TextView) convertView.findViewById(R.id.txWeight);
         // Populate the data into the template view using the data object
         tvName.setText(user.date.toString());
         tvHome.setText(user.weight.toString());
