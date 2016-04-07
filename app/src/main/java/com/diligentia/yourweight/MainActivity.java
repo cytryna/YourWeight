@@ -3,8 +3,11 @@ package com.diligentia.yourweight;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,7 +19,10 @@ public class MainActivity extends AppCompatActivity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.err.println("add_rss_button");
+                EditText editText = (EditText) findViewById(R.id.weight);
+                String text = editText.getText().toString();
+                Double weightToday = Double.parseDouble(text);
+//                Toast.makeText(getApplicationContext(), "editText.getText() " + weightToday, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), WeightHistoryActivity.class);
                 startActivity(intent);
             }

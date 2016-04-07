@@ -7,15 +7,27 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
 /**
  * Created by rwichrowski on 07.04.16.
  */
 public class WeightHistoryActivity extends Activity {
 
+    Map<Date, Double> weightMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        weightMap = new HashMap<>();
+        fillTemplateWeight();
         setContentView(R.layout.activity_weight_history);
+
+
 
         Button ok = (Button) findViewById(R.id.ok);
 
@@ -34,4 +46,24 @@ public class WeightHistoryActivity extends Activity {
             }
         });
     }
+
+    public void fillTemplateWeight() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.add(Calendar.DATE, -100);
+
+        Random r = new Random();
+        double randomValue;
+        for (int i = 0; i < 100; i++) {
+            cal.add(Calendar.DATE, 1);
+            randomValue = 100 + (130 - 100) * r.nextDouble();
+            weightMap.put(cal.getTime(), randomValue);
+            System.err.println(cal.getTime() + " " + randomValue);
+        }
+    }
+
+//    public static void main(String[] args) {
+//        WeightHistoryActivity weightHistoryActivity = new WeightHistoryActivity();
+//        weightHistoryActivity.fillTemplateWeight();
+//    }
 }
