@@ -22,7 +22,7 @@ public class ItemsAdapter extends ArrayAdapter<Item> {
         Item user = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_list_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_weight_history_item, parent, false);
         }
         // Lookup view for data population
         TextView txDate = (TextView) convertView.findViewById(R.id.txDate);
