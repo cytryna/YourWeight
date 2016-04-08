@@ -37,7 +37,7 @@ public class WeightHistoryActivity extends Activity {
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(adapter);
 
-//        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_listview, mobileArray);
+//        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_list_item, mobileArray);
 //
 //        ListView listView = (ListView) findViewById(R.id.listView);
 //        listView.setAdapter(adapter);
