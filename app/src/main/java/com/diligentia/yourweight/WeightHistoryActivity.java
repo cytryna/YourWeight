@@ -2,7 +2,10 @@ package com.diligentia.yourweight;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.domain.Item;
 import com.domain.ItemsAdapter;
@@ -35,6 +38,13 @@ public class WeightHistoryActivity extends Activity {
         ItemsAdapter adapter = new ItemsAdapter(this, weightList);
 // Attach the adapter to a ListView
         ListView listView = (ListView) findViewById(R.id.listView);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(),
+                        "Wybrano element " + position + ", czyli " + weightList.get(position), Toast.LENGTH_SHORT).show();
+            }
+        });
         listView.setAdapter(adapter);
 
 //        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_weight_history_item, mobileArray);
