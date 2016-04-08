@@ -9,10 +9,11 @@ import android.widget.TextView;
 
 import com.diligentia.yourweight.R;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ItemsAdapter extends ArrayAdapter<Item> {
-    public ItemsAdapter(Context context, ArrayList<Item> users) {
+
+    public ItemsAdapter(Context context, List<Item> users) {
         super(context, 0, users);
     }
 

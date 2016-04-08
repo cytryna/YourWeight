@@ -7,7 +7,7 @@ import java.util.Date;
 public class Item {
     private Date date;
     private BigDecimal weight;
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    public static SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
     public Item(Date date, BigDecimal weight) {
         this.date = date;
@@ -16,7 +16,11 @@ public class Item {
 
 
     public String getDateString() {
-        return simpleDateFormat.format(date);
+        return SIMPLE_DATE_FORMAT.format(date);
+    }
+
+    public Date getDate() {
+        return date;
     }
 
     public BigDecimal getWeight() {

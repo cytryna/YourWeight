@@ -15,15 +15,19 @@ import com.domain.Item;
 import com.domain.ItemsAdapter;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.Random;
+
+import static com.domain.Item.SIMPLE_DATE_FORMAT;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<Item> weightList;
+    LinkedList<Item> weightList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +40,14 @@ public class MainActivity extends AppCompatActivity {
                 EditText editText = (EditText) findViewById(R.id.weight);
                 String text = editText.getText().toString();
 
-                Double weightToday = Double.parseDouble(text.isEmpty() ? "120.5" : text);
-//                Toast.makeText(getApplicationContext(), "editText.getText() " + weightToday, Toast.LENGTH_SHORT).show();
+                BigDecimal weightToday = new BigDecimal(text.isEmpty() ? "120.5" : text);// TODO: 08.04.2016 Usunąć to
+                if (SIMPLE_DATE_FORMAT.format(new Date()).compareTo(weightList.get(0).getDateString()) != 0) {
+                    weightList.addFirst(new Item(new Date(), weightToday));
+                } else {
+                    weightList.set(0, new Item(new Date(), weightToday));
+                }
+
+                Toast.makeText(getApplicationContext(), getString(R.string.MainActivity_insertTodayWeighht) + weightToday, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), WeightHistoryActivity.class);
                 startActivity(intent);
             }
@@ -64,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fillTemplateWeight() {
-        weightList  = new ArrayList<Item>();
+        weightList  = new LinkedList<Item>();
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
         cal.add(Calendar.DATE, -101);
