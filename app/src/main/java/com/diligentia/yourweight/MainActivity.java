@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 Toast.makeText(getApplicationContext(), getString(R.string.MainActivity_insertTodayWeighht) + weightToday, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), WeightHistoryActivity.class);
+//                Intent intent = new Intent(getApplicationContext(), WeightHistoryActivity.class);
+                Intent intent = new Intent(getApplicationContext(), DrawingChartActivity.class);
                 startActivity(intent);
             }
         });

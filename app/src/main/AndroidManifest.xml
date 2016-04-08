@@ -19,6 +19,9 @@
         <activity
             android:name=".WeightHistoryActivity"
             android:label="Dodaj Wagę" />
+        <activity
+            android:name=".DrawingChartActivity"
+            android:label="Rysowanie" />
     </application>
 
 </manifest>
