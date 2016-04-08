@@ -1,4 +1,4 @@
-package com.domain;
+package com.diligentia.domain;
 
 import android.content.Context;
 import android.view.LayoutInflater;

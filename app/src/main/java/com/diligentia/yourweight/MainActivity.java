@@ -3,7 +3,6 @@ package com.diligentia.yourweight;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -11,19 +10,18 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.domain.Item;
-import com.domain.ItemsAdapter;
+import com.diligentia.domain.Item;
+import com.diligentia.domain.ItemsAdapter;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Random;
 
-import static com.domain.Item.SIMPLE_DATE_FORMAT;
+import static com.diligentia.domain.Item.SIMPLE_DATE_FORMAT;
+
 
 public class MainActivity extends AppCompatActivity {
 

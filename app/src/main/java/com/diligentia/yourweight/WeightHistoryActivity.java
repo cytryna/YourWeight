@@ -2,19 +2,6 @@ package com.diligentia.yourweight;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.Toast;
-
-import com.domain.Item;
-import com.domain.ItemsAdapter;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Random;
 
 /**
  * Created by rwichrowski on 07.04.16.

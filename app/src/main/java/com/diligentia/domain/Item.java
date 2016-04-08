@@ -1,4 +1,4 @@
-package com.domain;
+package com.diligentia.domain;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
