@@ -5,16 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.diligentia.yourweight.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by rwichrowski on 07.04.16.
- */
 public class ItemsAdapter extends ArrayAdapter<Item> {
     public ItemsAdapter(Context context, ArrayList<Item> users) {
         super(context, 0, users);
@@ -29,11 +25,11 @@ public class ItemsAdapter extends ArrayAdapter<Item> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_listview, parent, false);
         }
         // Lookup view for data population
-        TextView tvName = (TextView) convertView.findViewById(R.id.txDate);
-        TextView tvHome = (TextView) convertView.findViewById(R.id.txWeight);
+        TextView txDate = (TextView) convertView.findViewById(R.id.txDate);
+        TextView txWeight = (TextView) convertView.findViewById(R.id.txWeight);
         // Populate the data into the template view using the data object
-        tvName.setText(user.date.toString());
-        tvHome.setText(user.weight.toString());
+        txDate.setText(user.getDateString().toString());
+        txWeight.setText(user.getWeight().toString());
         // Return the completed view to render on screen
         return convertView;
     }

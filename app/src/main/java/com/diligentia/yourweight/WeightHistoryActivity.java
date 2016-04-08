@@ -7,10 +7,10 @@ import android.widget.ListView;
 import com.domain.Item;
 import com.domain.ItemsAdapter;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -19,7 +19,6 @@ import java.util.Random;
 public class WeightHistoryActivity extends Activity {
 
     ArrayList<Item> weightList;
-    String[] mobileArray = {"Android", "IPhone", "WindowsMobile", "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,17 +66,16 @@ public class WeightHistoryActivity extends Activity {
         cal.setTime(new Date());
         cal.add(Calendar.DATE, -100);
 
+        BigDecimal min = new BigDecimal(80);
+        BigDecimal max = new BigDecimal(130);
+        BigDecimal randomBigDecimal;
+
         Random r = new Random();
         double randomValue;
         for (int i = 0; i < 100; i++) {
             cal.add(Calendar.DATE, 1);
-            randomValue = 100 + (130 - 100) * r.nextDouble();
-            weightList.add(new Item(cal.getTime(), randomValue));
+            randomBigDecimal = min.add(new BigDecimal(Math.random()).multiply(max.subtract(min)));
+            weightList.add(new Item(cal.getTime(), randomBigDecimal.setScale(2,BigDecimal.ROUND_HALF_UP)));
         }
     }
-
-//    public static void main(String[] args) {
-//        WeightHistoryActivity weightHistoryActivity = new WeightHistoryActivity();
-//        weightHistoryActivity.fillTemplateWeight();
-//    }
 }
