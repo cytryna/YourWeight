@@ -25,11 +25,12 @@ import static com.diligentia.domain.Item.SIMPLE_DATE_FORMAT;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinkedList<Item> weightList;
+    private WeightRepository weightRepository;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        fillTemplateWeight();
+        weightRepository = WeightRepository.getInstance();
+        final LinkedList<Item> weightList = weightRepository.getWeightList();
         setContentView(R.layout.activity_main);
         Button ok = (Button) findViewById(R.id.add_weight_button);
         ok.setOnClickListener(new View.OnClickListener() {
@@ -72,22 +73,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void fillTemplateWeight() {
-        weightList  = new LinkedList<Item>();
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(new Date());
-        cal.add(Calendar.DATE, -101);
 
-        BigDecimal min = new BigDecimal(80);
-        BigDecimal max = new BigDecimal(130);
-        BigDecimal randomBigDecimal;
-
-        Random r = new Random();
-        double randomValue;
-        for (int i = 0; i < 100; i++) {
-            cal.add(Calendar.DATE, 1);
-            randomBigDecimal = min.add(new BigDecimal(Math.random()).multiply(max.subtract(min)));
-            weightList.add(new Item(cal.getTime(), randomBigDecimal.setScale(2,BigDecimal.ROUND_HALF_UP)));
-        }
-    }
 }
