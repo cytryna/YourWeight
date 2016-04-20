@@ -22,6 +22,7 @@ public class DrawingChartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LinkedList<Item> weightList = WeightRepository.getInstance().getWeightList();
+
         setContentView(R.layout.activity_drawing_chart);
 
         LineChart lineChart = (LineChart) findViewById(R.id.chart);
@@ -30,7 +31,9 @@ public class DrawingChartActivity extends AppCompatActivity {
         ArrayList<Entry> entries = new ArrayList<>();
         ArrayList<String> labels = new ArrayList<String>();
         int i = 0;
-        for (Item item : weightList) {
+        for (int i1 = weightList.size() - 1; i1 >= 0; i1--) {
+            Item item = weightList.get(i1);
+            System.err.println(item.getWeight());
             entries.add(new Entry(item.getWeight().floatValue(), ++i));
             labels.add(item.getDateString());
         }
