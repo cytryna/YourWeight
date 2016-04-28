@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Your Weight</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
     <string name="insertNewWeight">Wprowadź dzisiejszą wagę</string>
     <string name="add_weight_button">Dodaj wagę</string>
     <string name="MainActivity_insertTodayWeighht">Wprowadzono dzisiejszą wagę: </string>
+
 </resources>

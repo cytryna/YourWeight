@@ -19,9 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
+
+        <activity android:name=".LoginActivity">
         </activity>
 
+        <activity
+            android:name=".MainActivity"
+            android:label="Main Activity" />
         <activity
             android:name=".WeightHistoryActivity"
             android:label="Dodaj Wagę" />
