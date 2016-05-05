@@ -5,5 +5,7 @@
     <string name="insertNewWeight">Wprowadź dzisiejszą wagę</string>
     <string name="add_weight_button">Dodaj wagę</string>
     <string name="MainActivity_insertTodayWeighht">Wprowadzono dzisiejszą wagę: </string>
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
     <bool name="withLogin">false</bool>
 </resources>

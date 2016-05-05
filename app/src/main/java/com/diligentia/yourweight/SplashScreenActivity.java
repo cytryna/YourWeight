@@ -25,7 +25,8 @@ public class SplashScreenActivity extends Activity {
                 if (res.getBoolean(R.bool.withLogin)) {
                     cls = LoginActivity.class;
                 } else {
-                    cls = MainActivity.class;
+//                    cls = MainActivity.class;
+                    cls = DrawerActivity.class;
                 }
                 Intent i = new Intent(SplashScreenActivity.this, cls);
                 startActivity(i);
