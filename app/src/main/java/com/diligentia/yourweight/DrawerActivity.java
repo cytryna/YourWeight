@@ -1,5 +1,6 @@
 package com.diligentia.yourweight;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -10,11 +11,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.diligentia.domain.Item;
+import com.diligentia.domain.ItemsAdapter;
+
+import java.util.Collections;
+import java.util.LinkedList;
+
 public class DrawerActivity extends AppCompatActivity {
 
+    private WeightRepository weightRepository;
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
     private ArrayAdapter<String> mAdapter;
@@ -25,6 +34,8 @@ public class DrawerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_draver);
+        weightRepository = WeightRepository.getInstance();
+        final LinkedList<Item> weightList = weightRepository.getWeightList();
 
         mDrawerList = (ListView) findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -35,6 +46,32 @@ public class DrawerActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        Collections.reverse(weightList);
+        ItemsAdapter adapter = new ItemsAdapter(this, weightList);
+// Attach the adapter to a ListView
+        ListView listView = (ListView) findViewById(R.id.listView);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(),
+                        "Wybrano element " + position + ", czyli " + weightList.get(position), Toast.LENGTH_SHORT).show();
+            }
+        });
+        listView.setAdapter(adapter);
+
+        Button ok = (Button) findViewById(R.id.plusButton);
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Toast.makeText(getApplicationContext(), getString(R.string.MainActivity_insertTodayWeighht), Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(getApplicationContext(), WeightHistoryActivity.class);
+                Intent intent = new Intent(getApplicationContext(), DrawingChartActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void addDrawerItems() {
