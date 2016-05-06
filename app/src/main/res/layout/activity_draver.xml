@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- The first child in the layout is for the main Activity UI-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,6 +39,60 @@
 
 
     </RelativeLayout>
+
+
+    <!-- The first child in the layout is for the main Activity UI-->
+    <!--<TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/change_prefs_btn"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal" >
+
+        <TableRow>
+            <TextView android:text="Światło:" />
+            <TextView
+                android:id="@+id/light"
+                android:text="włączone" />
+        </TableRow>
+
+        <TableRow>
+            <TextView android:text="Pralka:" />
+            <TextView
+                android:id="@+id/washing_machine"
+                android:text="wyłączona" />
+        </TableRow>
+
+        <TableRow>
+            <TextView android:text="Imię:" />
+            <TextView
+                android:id="@+id/name"
+                android:text="Adam" />
+        </TableRow>
+
+        <TableRow>
+            <TextView android:text="Zwierzątko:" />
+            <TextView
+                android:id="@+id/animal"
+                android:text="kot" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_marginRight="10dp"
+                android:text="Smak lodów:" />
+            <TextView
+                android:id="@+id/ice_cream_flavour"
+                android:text="czeladowe" />
+        </TableRow>
+
+        <TableRow>
+            <TextView android:text="Dzwonek:" />
+            <TextView
+                android:id="@+id/ringtone"
+                android:text="Aserehe" />
+        </TableRow>
+    </TableLayout>-->
 
     <!-- Side navigation drawer UI -->
     <ListView

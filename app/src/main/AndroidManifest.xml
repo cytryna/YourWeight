@@ -22,7 +22,8 @@
 
         <activity android:name=".LoginActivity">
         </activity>
-
+        <activity
+            android:name=".PreferenceExampleActivity"/>
         <activity
             android:name=".DrawerActivity"/>
         <activity
