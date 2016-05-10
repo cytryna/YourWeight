@@ -1,5 +1,6 @@
 package com.diligentia.yourweight;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -8,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +22,10 @@ import android.widget.Toast;
 import com.diligentia.domain.Item;
 import com.diligentia.domain.ItemsAdapter;
 
+import java.math.BigDecimal;
 import java.util.Collections;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
 
@@ -37,19 +42,32 @@ public class MainActivity extends AppCompatActivity {
     private static final String PREF_ICE_CREAM_FLAVOURS = "pref_ice_cream_flavours";
     private static final String PREF_RINGTONE = "pref_ringtone";
 
-    private WeightRepository weightRepository;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+
+//    private WeightRepository weightRepository;
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
     private ArrayAdapter<String> mAdapter;
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
+    SharedPreferences sharedpreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_draver);
-        weightRepository = WeightRepository.getInstance();
-        final LinkedList<Item> weightList = weightRepository.getWeightList();
+        setContentView(R.layout.activity_main);
+//        weightRepository = WeightRepository.getInstance();
+        final LinkedList<Item> weightList = new LinkedList<>();
+
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+
+        Set<String> data = sharedpreferences.getStringSet("data", new HashSet<String>());
+
+        for (String s : data) {
+            weightList.add(new Item(s));
+        }
+        Log.i("chauster", "1.set = "+sharedpreferences.getStringSet("data", new HashSet<String>()));
 
         mDrawerList = (ListView) findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -101,6 +119,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), getString(R.string.MainActivity_insertTodayWeighht), Toast.LENGTH_SHORT).show();
+                weightList.add(new Item(new Date(), new BigDecimal(123)));
+                Set<String> strings = new HashSet<String>();
+                for (Item item : weightList) {
+                    strings.add(item.getSetItem());
+                }
+                sharedpreferences.edit().clear();
+                sharedpreferences.edit().putStringSet("data", strings).commit();
+//                sharedpreferences.edit();
+
+
+                Log.i("chauster", "2.set = "+sharedpreferences.getStringSet("data", new HashSet<String>()));
+
+
                 Intent intent = new Intent(getApplicationContext(), ChartActivity.class);
                 startActivity(intent);
             }

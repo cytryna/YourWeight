@@ -1,5 +1,8 @@
 package com.diligentia.yourweight;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.diligentia.domain.Item;
 
 import java.math.BigDecimal;
