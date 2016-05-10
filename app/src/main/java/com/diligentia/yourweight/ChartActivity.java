@@ -16,7 +16,7 @@ import java.util.LinkedList;
 /**
  * Created by radek on 08.04.2016.
  */
-public class DrawingChartActivity extends AppCompatActivity {
+public class ChartActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

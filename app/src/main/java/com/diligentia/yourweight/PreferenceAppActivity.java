@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 
-public class PreferenceExampleActivity extends PreferenceActivity {
+public class PreferenceAppActivity extends PreferenceActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

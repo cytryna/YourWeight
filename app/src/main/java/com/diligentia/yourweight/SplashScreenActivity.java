@@ -26,7 +26,7 @@ public class SplashScreenActivity extends Activity {
                     cls = LoginActivity.class;
                 } else {
 //                    cls = MainActivity.class;
-                    cls = DrawerActivity.class;
+                    cls = MainActivity.class;
                 }
                 Intent i = new Intent(SplashScreenActivity.this, cls);
                 startActivity(i);
