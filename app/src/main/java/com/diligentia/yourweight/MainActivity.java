@@ -1,6 +1,5 @@
 package com.diligentia.yourweight;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -9,7 +8,6 @@ import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,10 +21,7 @@ import com.diligentia.domain.Item;
 import com.diligentia.domain.ItemsAdapter;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Set;
 
 import static com.diligentia.yourweight.MainActivity.SettingsEnum.CHART;
@@ -35,6 +30,9 @@ import static com.diligentia.yourweight.MainActivity.SettingsEnum.USER;
 
 public class MainActivity extends AppCompatActivity {
 
+    // TODO: 12.05.16  mniejszy plus przycisk
+    // TODO: 12.05.16 dodac wygodne wprowadzanie wagi
+    // TODO: 12.05.16 umożliwić rejestrację nowych użytkowników
     private static final String PREF_LIGHT = "pref_light";
     private static final String PREF_WAHSING_MASHINE = "pref_washing_machine";
     private static final String PREF_NAME = "pref_name";
@@ -42,24 +40,19 @@ public class MainActivity extends AppCompatActivity {
     private static final String PREF_ICE_CREAM_FLAVOURS = "pref_ice_cream_flavours";
     private static final String PREF_RINGTONE = "pref_ringtone";
 
-    public static final String WEIGHT_DATA = "weightdata";
-    public static final String DATABASE = "database" ;
-    private final WeightRepository weightRepository = WeightRepository.getInstance();
+    private Repository repository;
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
     private ArrayAdapter<String> mAdapter;
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
-    SharedPreferences sharedpreferences;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        sharedpreferences = getSharedPreferences(DATABASE, Context.MODE_PRIVATE);
+        repository = Repository.getInstance(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        weightRepository.setSharedpreferences(sharedpreferences);
-        LinkedList<Item> weightList = weightRepository.getWeightList();
 
         mDrawerList = (ListView) findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -71,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        ItemsAdapter adapter = new ItemsAdapter(this, weightList);
+        ItemsAdapter adapter = new ItemsAdapter(this, repository.getWeightList());
 
         final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
@@ -85,13 +78,6 @@ public class MainActivity extends AppCompatActivity {
         String lightValue = (lightEnabled) ? "włączone" : "wyłączone";
         String washingMachineValue = (washingMachineEnabled) ? "włączona" : "wyłączona";
 
-
-        System.err.println(lightValue);
-//        washingMachine.setText(washingMachineValue);
-//        name.setText(nameValue);
-//        animal.setText(animalValue);
-//        iceCreamFlavour.setText(iceCreamFlavourValues.toString());
-//        ringtone.setText(ring0toneValue);
 
 
 // Attach the adapter to a ListView
@@ -110,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), getString(R.string.MainActivity_insertTodayWeighht), Toast.LENGTH_SHORT).show();
-                weightRepository.addWeight(new Item(new Date(), new BigDecimal(113)));
+                repository.addWeight(new Item(new Date(), new BigDecimal(93)));
 
 //                sharedpreferences.edit();
 

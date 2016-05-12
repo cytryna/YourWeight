@@ -1,32 +1,32 @@
 package com.diligentia.yourweight;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.diligentia.domain.Item;
 
-import java.math.BigDecimal;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.Random;
 import java.util.Set;
 
 
-public class WeightRepository {
+public class Repository {
 
+    private static Repository instance;
     public static final String DATABASE = "database" ;
     public static final String WEIGHT_DATA = "weightdata";
-    LinkedList<Item> weightList = new LinkedList<>();
-    private static WeightRepository instance;
     private SharedPreferences sharedpreferences;
+    LinkedList<Item> weightList = new LinkedList<>();
 
+    private Repository(Activity activity) {
+        this.sharedpreferences = activity.getSharedPreferences(DATABASE, Context.MODE_PRIVATE);
+    }
 
-    public static WeightRepository getInstance() {
+    public static Repository getInstance(Activity activity) {
         if (instance == null) {
-            instance = new WeightRepository();
+            instance = new Repository(activity);
         }
         return instance;
     }
@@ -70,9 +70,5 @@ public class WeightRepository {
         sharedpreferences.edit().clear();
         sharedpreferences.edit().putStringSet(WEIGHT_DATA, strings).commit();
 
-    }
-
-    public void setSharedpreferences(SharedPreferences sharedpreferences) {
-        this.sharedpreferences = sharedpreferences;
     }
 }

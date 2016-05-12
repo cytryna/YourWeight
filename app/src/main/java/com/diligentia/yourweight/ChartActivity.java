@@ -1,7 +1,5 @@
 package com.diligentia.yourweight;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -15,19 +13,15 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-/**
- * Created by radek on 08.04.2016.
- */
 public class ChartActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.DATABASE, Context.MODE_PRIVATE);
 
-        WeightRepository instance = WeightRepository.getInstance();
-        instance.setSharedpreferences(sharedpreferences);
-        LinkedList<Item> weightList = instance.getWeightList();
+        Repository repository = Repository.getInstance(this);
+
+        LinkedList<Item> weightList = repository.getWeightList();
 
         setContentView(R.layout.activity_drawing_chart);
 
