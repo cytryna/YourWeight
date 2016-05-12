@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String PREF_ICE_CREAM_FLAVOURS = "pref_ice_cream_flavours";
     private static final String PREF_RINGTONE = "pref_ringtone";
 
-    public static final String MyPREFERENCES = "MyPrefs" ;
-
-//    private WeightRepository weightRepository;
+    public static final String WEIGHT_DATA = "weightdata";
+    public static final String DATABASE = "database" ;
+    private final WeightRepository weightRepository = WeightRepository.getInstance();
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
     private ArrayAdapter<String> mAdapter;
@@ -52,22 +52,14 @@ public class MainActivity extends AppCompatActivity {
     private String mActivityTitle;
     SharedPreferences sharedpreferences;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedpreferences = getSharedPreferences(DATABASE, Context.MODE_PRIVATE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        weightRepository = WeightRepository.getInstance();
-        final LinkedList<Item> weightList = new LinkedList<>();
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-
-
-        Set<String> data = sharedpreferences.getStringSet("data", new HashSet<String>());
-
-        for (String s : data) {
-            weightList.add(new Item(s));
-        }
-        Log.i("chauster", "1.set = "+sharedpreferences.getStringSet("data", new HashSet<String>()));
+        weightRepository.setSharedpreferences(sharedpreferences);
+        LinkedList<Item> weightList = weightRepository.getWeightList();
 
         mDrawerList = (ListView) findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -79,10 +71,9 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        Collections.reverse(weightList);
         ItemsAdapter adapter = new ItemsAdapter(this, weightList);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         boolean lightEnabled = sharedPreferences.getBoolean(PREF_LIGHT, false);
         boolean washingMachineEnabled = sharedPreferences.getBoolean(PREF_WAHSING_MASHINE, false);
@@ -100,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 //        name.setText(nameValue);
 //        animal.setText(animalValue);
 //        iceCreamFlavour.setText(iceCreamFlavourValues.toString());
-//        ringtone.setText(ringtoneValue);
+//        ringtone.setText(ring0toneValue);
 
 
 // Attach the adapter to a ListView
@@ -109,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(),
-                        "Wybrano element " + position + ", czyli " + weightList.get(position), Toast.LENGTH_SHORT).show();
+                        "Wybrano element " + position + ", czyli " , Toast.LENGTH_SHORT).show();
             }
         });
         listView.setAdapter(adapter);
@@ -119,24 +110,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), getString(R.string.MainActivity_insertTodayWeighht), Toast.LENGTH_SHORT).show();
-                weightList.add(new Item(new Date(), new BigDecimal(123)));
-                Set<String> strings = new HashSet<String>();
-                for (Item item : weightList) {
-                    strings.add(item.getSetItem());
-                }
-                sharedpreferences.edit().clear();
-                sharedpreferences.edit().putStringSet("data", strings).commit();
+                weightRepository.addWeight(new Item(new Date(), new BigDecimal(113)));
+
 //                sharedpreferences.edit();
 
 
-                Log.i("chauster", "2.set = "+sharedpreferences.getStringSet("data", new HashSet<String>()));
-
-
-                Intent intent = new Intent(getApplicationContext(), ChartActivity.class);
-                startActivity(intent);
+                finish();
+                startActivity(getIntent());
+//                Intent intent = new Intent(getApplicationContext(), ChartActivity.class);
+//                startActivity(intent);
             }
         });
     }
+
+
 
     private void addDrawerItems() {
         String[] osArray = {USER.getName(), CHART.getName(), SETTINGS.getName()};
