@@ -89,10 +89,10 @@ public class MainActivity extends AppCompatActivity {
 //                sharedpreferences.edit();
 
 
-                finish();
-                startActivity(getIntent());
-//                Intent intent = new Intent(getApplicationContext(), ChartActivity.class);
-//                startActivity(intent);
+//                finish();
+//                startActivity(getIntent());
+                Intent intent = new Intent(getApplicationContext(), PickerActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -8,4 +8,7 @@
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
     <bool name="withLogin">false</bool>
+
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>

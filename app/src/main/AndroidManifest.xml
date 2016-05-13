@@ -27,6 +27,8 @@
         <activity
             android:name=".MainActivity"/>
         <activity
+            android:name=".PickerActivity"/>
+        <activity
             android:name=".ChartActivity"
             android:label="Rysowanie" />
     </application>
