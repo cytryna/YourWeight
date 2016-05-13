@@ -34,6 +34,14 @@
         android:layout_marginTop="25dp"
         android:text="Old Value : " />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zapisz"
+        android:id="@+id/saveButton"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
