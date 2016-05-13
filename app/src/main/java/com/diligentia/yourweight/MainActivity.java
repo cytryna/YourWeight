@@ -33,12 +33,8 @@ public class MainActivity extends AppCompatActivity {
     // TODO: 12.05.16  mniejszy plus przycisk
     // TODO: 12.05.16 dodac wygodne wprowadzanie wagi
     // TODO: 12.05.16 umożliwić rejestrację nowych użytkowników
-    private static final String PREF_LIGHT = "pref_light";
-    private static final String PREF_WAHSING_MASHINE = "pref_washing_machine";
     private static final String PREF_NAME = "pref_name";
-    private static final String PREF_ANIMALS = "pref_animals";
-    private static final String PREF_ICE_CREAM_FLAVOURS = "pref_ice_cream_flavours";
-    private static final String PREF_RINGTONE = "pref_ringtone";
+    private static final String PREF_UINT_SYSTEM = "unit_system";
 
     private Repository repository;
     private ListView mDrawerList;
@@ -68,16 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
         final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        boolean lightEnabled = sharedPreferences.getBoolean(PREF_LIGHT, false);
-        boolean washingMachineEnabled = sharedPreferences.getBoolean(PREF_WAHSING_MASHINE, false);
         String nameValue = sharedPreferences.getString(PREF_NAME, "");
-        String animalValue = sharedPreferences.getString(PREF_ANIMALS, "");
-        Set<String> iceCreamFlavourValues = sharedPreferences.getStringSet(PREF_ICE_CREAM_FLAVOURS, null);
-        String ringtoneValue = sharedPreferences.getString(PREF_RINGTONE, "");
-
-        String lightValue = (lightEnabled) ? "włączone" : "wyłączone";
-        String washingMachineValue = (washingMachineEnabled) ? "włączona" : "wyłączona";
-
+        String animalValue = sharedPreferences.getString(PREF_UINT_SYSTEM, "");
 
 
 // Attach the adapter to a ListView

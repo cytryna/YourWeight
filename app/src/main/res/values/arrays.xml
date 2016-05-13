@@ -1,27 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="animals">
-        <item>Kot</item>
-        <item>Pies</item>
-        <item>Słoń</item>
-    </string-array>
-    <string-array name="animals_keys">
-        <item>cat</item>
-        <item>dog</item>
-        <item>elephant</item>
-    </string-array>
-
-    <array name="ice_cream_flavours">
-        <item>Czekoladowe</item>
-        <item>Truskawkowe</item>
-        <item>Waniliowe</item>
+    <array name="unit_system">
+        <item>Metric</item>
+        <item>Imperial</item>
     </array>
 
-    <array name="ice_cream_flavours_keys">
-        <item>chocolate</item>
-        <item>strawberry</item>
-        <item>vanilla</item>
+    <array name="unit_system_key">
+        <item>metric</item>
+        <item>imperial</item>
     </array>
 
 </resources>

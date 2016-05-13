@@ -1,45 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <CheckBoxPreference
-        android:key="pref_light"
-        android:summaryOff="Światło wyłączone"
-        android:summaryOn="Światło włączone"
-        android:title="Światło" />
-
-    <SwitchPreference
+<!--    <SwitchPreference
         android:key="pref_washing_machine"
-        android:summaryOff="Pralka wyłączona"
+        android:summaryOff="Pralka pwyłączona"
         android:summaryOn="Pralka włączone"
         android:switchTextOff="kg"
         android:switchTextOn="pounds"
-        android:title="Pranie" />
+        android:title="Pranie" />-->
 
     <EditTextPreference
         android:dialogTitle="Podaj swoje imię"
         android:key="pref_name"
         android:negativeButtonText="Anuluj"
         android:positiveButtonText="OK"
-        android:title="Imię" />
+        android:title="Twoje imię" />
 
-    <!--<ListPreference-->
-        <!--android:defaultValue="cat"-->
-        <!--android:dialogTitle="System zmianowy"-->
-        <!--android:entries="@array/animals"-->
-        <!--android:entryValues="@array/animals_keys"-->
-        <!--android:key="pref_animals"-->
-        <!--android:summary="Wybierz zwierzątko"-->
-        <!--android:title="Zwierzak" />-->
+    <ListPreference
+        android:defaultValue="metric"
+        android:dialogTitle="System metryczny"
+        android:entries="@array/unit_system"
+        android:entryValues="@array/unit_system_key"
+        android:key="unit_system"
+        android:summary="Wybierz system metryczny"
+        android:title="System metryczny" />
 
-    <MultiSelectListPreference
+    <!--<MultiSelectListPreference
         android:dialogTitle="Smaki lodów"
-        android:entries="@array/ice_cream_flavours"
+        android:entries="@array/unit_system"
         android:key="pref_ice_cream_flavours"
-        android:entryValues="@array/ice_cream_flavours_keys"
-        android:title="Smaki lodów" />
-
-    <RingtonePreference
-        android:key="pref_ringtone"
-        android:title="Dzwonek" />
+        android:entryValues="@array/unit_system_key"
+        android:title="Smaki lodów" />-->
 
 </PreferenceScreen>
