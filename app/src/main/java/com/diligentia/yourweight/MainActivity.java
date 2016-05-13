@@ -33,8 +33,7 @@ public class MainActivity extends AppCompatActivity {
     // TODO: 12.05.16  mniejszy plus przycisk
     // TODO: 12.05.16 dodac wygodne wprowadzanie wagi
     // TODO: 12.05.16 umożliwić rejestrację nowych użytkowników
-    private static final String PREF_NAME = "pref_name";
-    private static final String PREF_UINT_SYSTEM = "unit_system";
+
 
     private Repository repository;
     private ListView mDrawerList;
@@ -62,10 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         ItemsAdapter adapter = new ItemsAdapter(this, repository.getWeightList());
 
-        final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        String nameValue = sharedPreferences.getString(PREF_NAME, "");
-        String animalValue = sharedPreferences.getString(PREF_UINT_SYSTEM, "");
 
 
 // Attach the adapter to a ListView

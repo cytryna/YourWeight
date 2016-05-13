@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-<!--    <SwitchPreference
-        android:key="pref_washing_machine"
-        android:summaryOff="Pralka pwyłączona"
-        android:summaryOn="Pralka włączone"
-        android:switchTextOff="kg"
-        android:switchTextOn="pounds"
-        android:title="Pranie" />-->
+    <SwitchPreference
+        android:key="pref_login"
+        android:summaryOff="Bez logowania"
+        android:summaryOn="Logowanie"
+        android:switchTextOff="off"
+        android:switchTextOn="on"
+        android:title="Logowanie" />
 
     <EditTextPreference
         android:dialogTitle="Podaj swoje imię"
