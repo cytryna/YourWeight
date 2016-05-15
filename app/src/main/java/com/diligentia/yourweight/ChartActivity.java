@@ -38,10 +38,10 @@ public class ChartActivity extends AppCompatActivity {
             labels.add(item.getDateString());
         }
 
-        LineDataSet dataset = new LineDataSet(entries, "# of Calls");
+        LineDataSet dataset = new LineDataSet(entries, "");
 
         LineData data = new LineData(labels, dataset);
-        dataset.setColors(ColorTemplate.COLORFUL_COLORS);
+        dataset.setColors(ColorTemplate.PASTEL_COLORS);
         dataset.setDrawCubic(true);
         dataset.setDrawFilled(true);
 
