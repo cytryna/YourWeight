@@ -25,6 +25,7 @@ import java.util.Date;
 import java.util.Set;
 
 import static com.diligentia.yourweight.MainActivity.SettingsEnum.CHART;
+import static com.diligentia.yourweight.MainActivity.SettingsEnum.DELETE_ITEMS;
 import static com.diligentia.yourweight.MainActivity.SettingsEnum.SETTINGS;
 import static com.diligentia.yourweight.MainActivity.SettingsEnum.USER;
 
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     // TODO: 12.05.16  mniejszy plus przycisk
     // TODO: 12.05.16 dodac wygodne wprowadzanie wagi
     // TODO: 12.05.16 umożliwić rejestrację nowych użytkowników
-
+    // TODO: 15.06.16 Usuń wszystkie dane przetestuj dodwanie kolejnych wag
 
     private Repository repository;
     private ListView mDrawerList;
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void addDrawerItems() {
-        String[] osArray = {USER.getName(), CHART.getName(), SETTINGS.getName()};
+        String[] osArray = {USER.getName(), CHART.getName(), SETTINGS.getName(), DELETE_ITEMS.getName()};
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
         mDrawerList.setAdapter(mAdapter);
 
@@ -109,6 +110,9 @@ public class MainActivity extends AppCompatActivity {
                     intent = new Intent(getApplicationContext(), PreferenceAppActivity.class);
                 } else if (position == CHART.getPosition()) {
                     intent = new Intent(getApplicationContext(), ChartActivity.class);
+                } else if (position == DELETE_ITEMS.getPosition()) {
+                    repository.deleteWeight();
+                    return;
                 } else {
                     intent = new Intent(getApplicationContext(), SplashScreenActivity.class);// TODO: 10.05.16 Activity o mnie
                 }
@@ -182,7 +186,8 @@ public class MainActivity extends AppCompatActivity {
     enum SettingsEnum {
         USER("User", 0),
         CHART("Chart", 1),
-        SETTINGS("Settings", 2);
+        SETTINGS("Settings", 2),
+        DELETE_ITEMS("Delete items", 3);
 
         private String name;
         private final int position;

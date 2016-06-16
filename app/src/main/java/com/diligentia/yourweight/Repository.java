@@ -71,4 +71,10 @@ public class Repository {
         sharedpreferences.edit().putStringSet(WEIGHT_DATA, strings).commit();
 
     }
+
+    public void deleteWeight() {
+        sharedpreferences.edit().clear();
+        sharedpreferences.edit().putStringSet(WEIGHT_DATA, null).commit();
+
+    }
 }
