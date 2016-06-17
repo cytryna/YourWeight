@@ -12,6 +12,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class ChartActivity extends AppCompatActivity {
 
@@ -21,7 +22,7 @@ public class ChartActivity extends AppCompatActivity {
 
         Repository repository = Repository.getInstance(this);
 
-        LinkedList<Item> weightList = repository.getWeightList();
+        List<Item> weightList = repository.getWeightList();
 
         setContentView(R.layout.activity_drawing_chart);
 

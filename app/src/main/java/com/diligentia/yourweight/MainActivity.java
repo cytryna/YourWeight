@@ -63,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
         ItemsAdapter adapter = new ItemsAdapter(this, repository.getWeightList());
 
 
-
-
 // Attach the adapter to a ListView
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -80,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), getString(R.string.MainActivity_insertTodayWeighht), Toast.LENGTH_SHORT).show();
-                repository.addWeight(new Item(new Date(), new BigDecimal(93)));
+//                Toast.makeText(getApplicationContext(), getString(R.string.MainActivity_insertTodayWeighht), Toast.LENGTH_SHORT).show();
+//                repository.addWeight(new Item(new Date(), new BigDecimal(93)));
 
 //                sharedpreferences.edit();
 
@@ -112,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                     intent = new Intent(getApplicationContext(), ChartActivity.class);
                 } else if (position == DELETE_ITEMS.getPosition()) {
                     repository.deleteWeight();
-                    return;
+                    intent = new Intent(getApplicationContext(), MainActivity.class);
                 } else {
                     intent = new Intent(getApplicationContext(), SplashScreenActivity.class);// TODO: 10.05.16 Activity o mnie
                 }
