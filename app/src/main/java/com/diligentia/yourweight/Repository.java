@@ -69,7 +69,7 @@ public class Repository {
 
     private static <T extends Comparable<? super T>> List<T> asSortedList(Collection<T> c) {
         List<T> list = new ArrayList<T>(c);
-        java.util.Collections.sort(list);
+        java.util.Collections.sort(list, Collections.<T>reverseOrder());
         return list;
     }
 

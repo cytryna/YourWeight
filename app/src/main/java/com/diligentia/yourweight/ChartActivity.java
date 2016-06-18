@@ -2,6 +2,7 @@ package com.diligentia.yourweight;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.diligentia.domain.Item;
 import com.github.mikephil.charting.charts.LineChart;
@@ -34,8 +35,8 @@ public class ChartActivity extends AppCompatActivity {
         int i = 0;
         for (int i1 = weightList.size() - 1; i1 >= 0; i1--) {
             Item item = weightList.get(i1);
-            System.err.println(item.getWeight());
-            entries.add(new Entry(item.getWeight().floatValue(), ++i));
+//            Log.i("radek", ""+item.getWeight().floatValue());
+            entries.add(new Entry(item.getWeight().floatValue(), i++));
             labels.add(item.getDateString());
         }
 
