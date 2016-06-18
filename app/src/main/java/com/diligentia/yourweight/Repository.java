@@ -7,8 +7,12 @@ import android.util.Log;
 
 import com.diligentia.domain.Item;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 
@@ -18,7 +22,7 @@ public class Repository {
     public static final String DATABASE = "database" ;
     public static final String WEIGHT_DATA = "weightdata";
     private SharedPreferences sharedpreferences;
-    LinkedList<Item> weightList = new LinkedList<>();
+    List<Item> weightList = new ArrayList<>();
 
     private Repository(Activity activity) {
         this.sharedpreferences = activity.getSharedPreferences(DATABASE, Context.MODE_PRIVATE);
@@ -50,15 +54,23 @@ public class Repository {
 //        }
 //    }
 
-    public LinkedList<Item> getWeightList() {
-        weightList = new LinkedList<>();
+    public List<Item> getWeightList() {
         Set<String> data = sharedpreferences.getStringSet(WEIGHT_DATA, new HashSet<String>());
-        for (String s : data) {
+        List<String> strings = asSortedList(data);
+
+        weightList = new ArrayList<Item>();
+        for (String s : strings) {
             weightList.add(new Item(s));
         }
-//        Collections.reverse(weightList);
-        Log.i("sharedpreferences", "1.set = "+sharedpreferences.getStringSet(WEIGHT_DATA, new HashSet<String>()));
+//
+//        Log.i("sharedpreferences", "1.set = "+sharedpreferences.getStringSet(WEIGHT_DATA, new HashSet<String>()));
         return weightList;
+    }
+
+    private static <T extends Comparable<? super T>> List<T> asSortedList(Collection<T> c) {
+        List<T> list = new ArrayList<T>(c);
+        java.util.Collections.sort(list);
+        return list;
     }
 
     public void addWeight(Item item1) {
@@ -69,6 +81,12 @@ public class Repository {
         }
         sharedpreferences.edit().clear();
         sharedpreferences.edit().putStringSet(WEIGHT_DATA, strings).commit();
+
+    }
+
+    public void deleteWeight() {
+        sharedpreferences.edit().clear();
+        sharedpreferences.edit().putStringSet(WEIGHT_DATA, null).commit();
 
     }
 }

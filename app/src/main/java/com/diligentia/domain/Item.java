@@ -8,11 +8,10 @@ import java.util.Date;
 public class Item {
     private Date date;
     private BigDecimal weight;
-    public static SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+    public static SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    @Deprecated
-    public Item(Date date, BigDecimal weight) {
-        this.date = date;
+    public Item(BigDecimal weight) {
+        this.date = new Date();
         this.weight = weight;
     }
 

@@ -20,7 +20,7 @@ public class PickerActivity extends Activity {
 
     NumberPicker np1, np2;
     TextView tv1;
-    private String value = "0.0";
+    private String value = "60.0";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class PickerActivity extends Activity {
         np1.setMinValue(60);
         np1.setMaxValue(150);
         np2.setMinValue(0);
-        np2.setMaxValue(10);
+        np2.setMaxValue(9);
         np1.setWrapSelectorWheel(false);
 
         np1.setOnValueChangedListener(new OnValueChangeListener() {
@@ -62,8 +62,9 @@ public class PickerActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                repository.addWeight(new Item(new Date(), new BigDecimal(value)));
+                repository.addWeight(new Item(new BigDecimal(value)));
                 finish();
+                Toast.makeText(getApplicationContext(), getString(R.string.MainActivity_insertTodayWeighht) + " " + value, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
