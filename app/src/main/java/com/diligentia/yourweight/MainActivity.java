@@ -63,16 +63,15 @@ public class MainActivity extends AppCompatActivity {
         ItemsAdapter adapter = new ItemsAdapter(this, repository.getWeightList());
 
 
-// Attach the adapter to a ListView
         ListView listView = (ListView) findViewById(R.id.listView);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(),
-                        "Wybrano element " + position + ", czyli " , Toast.LENGTH_SHORT).show();
-            }
-        });
         listView.setAdapter(adapter);
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Toast.makeText(getApplicationContext(),
+//                        "Wybrano element " + position + ", czyli " , Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         Button ok = (Button) findViewById(R.id.plusButton);
         ok.setOnClickListener(new View.OnClickListener() {
