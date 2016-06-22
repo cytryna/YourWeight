@@ -20,16 +20,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".LoginActivity">
-        </activity>
-        <activity
-            android:name=".PreferenceAppActivity"/>
-        <activity
-            android:name=".MainActivity"/>
-        <activity
-            android:name=".PickerActivity"/>
-        <activity
-            android:name=".ChartActivity"
+        <activity android:name=".LoginActivity"/>
+        <activity android:name=".SignupActivity"/>
+        <activity android:name=".PreferenceAppActivity"/>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".PickerActivity"/>
+        <activity android:name=".ChartActivity"
             android:label="Rysowanie" />
     </application>
 
