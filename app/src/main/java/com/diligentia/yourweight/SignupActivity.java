@@ -17,6 +17,7 @@ import butterknife.InjectView;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
+    private Repository repository;
 
     @InjectView(R.id.input_name) EditText _nameText;
     @InjectView(R.id.input_password) EditText _passwordText;
@@ -27,7 +28,7 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         ButterKnife.inject(this);
-
+        repository = Repository.getInstance(this);
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +61,7 @@ public class SignupActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivityForResult(intent, 0);
 
-//        zapisać do pamięci nowego usera
+        repository.addUser(new User(name, password));
 
         new android.os.Handler().postDelayed(
                 new Runnable() {

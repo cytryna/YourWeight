@@ -21,8 +21,11 @@ public class Repository {
     private static Repository instance;
     public static final String DATABASE = "database" ;
     public static final String WEIGHT_DATA = "weightdata";
+    public static final String USER_DATA = "userdata";
     private SharedPreferences sharedpreferences;
     List<Item> weightList = new ArrayList<>();
+    private List<User> userList;
+
 
     private Repository(Activity activity) {
         this.sharedpreferences = activity.getSharedPreferences(DATABASE, Context.MODE_PRIVATE);
@@ -89,4 +92,30 @@ public class Repository {
         sharedpreferences.edit().putStringSet(WEIGHT_DATA, null).commit();
 
     }
+
+
+
+    public List<User> getUserList() {
+        Set<String> data = sharedpreferences.getStringSet(USER_DATA, new HashSet<String>());
+
+        userList = new ArrayList<User>();
+        for (String s : data) {
+            String[] split = s.split("_");
+            userList.add(new User(split[0], split[1]));
+        }
+
+        return userList;
+    }
+
+    public void addUser(User item1) {
+        userList.add(item1);
+        Set<String> strings = new HashSet<String>();
+        for (User item : userList) {
+            strings.add(item.getUserString());
+        }
+        sharedpreferences.edit().clear();
+        sharedpreferences.edit().putStringSet(USER_DATA, strings).commit();
+
+    }
+
 }

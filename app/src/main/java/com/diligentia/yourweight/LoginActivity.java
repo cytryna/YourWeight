@@ -18,20 +18,22 @@ import butterknife.InjectView;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
-    private static final int REQUEST_SIGNUP = 0;
 
-    @InjectView(R.id.input_email)
-    EditText _emailText;
+    @InjectView(R.id.input_login)
+    EditText _loginText;
     @InjectView(R.id.input_password)
     EditText _passwordText;
     @InjectView(R.id.btn_login)
     Button _loginButton;
     @InjectView(R.id.link_signup)
     TextView _signupLink;
+    private Repository repository;
+    private static final int REQUEST_SIGNUP = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        repository = Repository.getInstance(this);
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
 
@@ -41,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 //                @Override
 //                public void onClick(View v) {
-//                    if (_emailText.getText().toString().equals("") && _passwordText.getText().toString().equals("")) {
+//                    if (_loginText.getText().toString().equals("") && _passwordText.getText().toString().equals("")) {
 //                        Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
 //                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
 //                        startActivity(i);
@@ -84,20 +86,27 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
-        String email = _emailText.getText().toString();
+        String login = _loginText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        // TODO: Implement your own authentication logic here.
+        for (User user : repository.getUserList()) {
+            if (login.equalsIgnoreCase(user.getName())) {
+                if (password.equals(user.getPassword())) {
+                    new android.os.Handler().postDelayed(
+                            new Runnable() {
+                                public void run() {
+                                    // On complete call either onLoginSuccess or onLoginFailed
+                                    onLoginSuccess();
+                                    // onLoginFailed();
+                                    progressDialog.dismiss();
+                                }
+                            }, 3000);
+                    return;
+                }
+            }
+         }
+        onLoginFailed();
 
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
     }
 
 
@@ -121,7 +130,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
-        finish();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivityForResult(intent, 0);
+//        finish();
     }
 
     public void onLoginFailed() {
@@ -133,22 +144,22 @@ public class LoginActivity extends AppCompatActivity {
     public boolean validate() {
         boolean valid = true;
 
-        String email = _emailText.getText().toString();
+        String emails = _loginText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("enter a valid email address");
-            valid = false;
-        } else {
-            _emailText.setError(null);
-        }
+//        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+//            _loginText.setError("enter a valid email address");
+//            valid = false;
+//        } else {
+//            _loginText.setError(null);
+//        }
 
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            _passwordText.setError("between 4 and 10 alphanumeric characters");
-            valid = false;
-        } else {
-            _passwordText.setError(null);
-        }
+//        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
+//            _passwordText.setError("between 4 and 10 alphanumeric characters");
+//            valid = false;
+//        } else {
+//            _passwordText.setError(null);
+//        }
 
         return valid;
     }
