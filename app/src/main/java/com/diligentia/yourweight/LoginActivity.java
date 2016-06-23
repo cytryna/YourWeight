@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
             if (login.equalsIgnoreCase(user.getName())) {
 
                 if (password.equals(user.getPassword())) {
-                    repository.setLoginUser(login);
+                    repository.setLastLoginUser(login);
                     new android.os.Handler().postDelayed(
                             new Runnable() {
                                 public void run() {

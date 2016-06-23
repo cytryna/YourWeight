@@ -21,7 +21,7 @@ public class Repository {
 
     private static Repository instance;
     public static final String DATABASE = "database" ;
-    private String loginUser;
+    private static final String LAST_USER = "lastUser";
     private static final String WEIGHT_DATA = "weightdata";
     private static final String USER_DATA = "userdata";
     private SharedPreferences sharedpreferences;
@@ -96,7 +96,7 @@ public class Repository {
     }
 
     private String getUserWeightKey() {
-        return WEIGHT_DATA+loginUser.toLowerCase();
+        return WEIGHT_DATA+getLastLoginUser().toLowerCase();
     }
 
 
@@ -125,11 +125,14 @@ public class Repository {
 
 
 
-    public void setLoginUser(String loginUser) {
-        this.loginUser = loginUser;
+    public void setLastLoginUser(String loginUser) {
+
+        sharedpreferences.edit().clear();
+        sharedpreferences.edit().putString(LAST_USER, loginUser).commit();
     }
 
-    public String getLoginUser() {
-        return loginUser;
+    public String getLastLoginUser() {
+        String user = sharedpreferences.getString(LAST_USER, new String());
+        return user;
     }
 }

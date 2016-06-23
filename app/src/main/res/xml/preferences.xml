@@ -3,18 +3,12 @@
 
     <SwitchPreference
         android:key="pref_login"
+        android:defaultValue="true"
         android:summaryOff="Bez logowania"
         android:summaryOn="Logowanie"
         android:switchTextOff="off"
         android:switchTextOn="on"
         android:title="Logowanie" />
-
-    <EditTextPreference
-        android:dialogTitle="Podaj swoje imię"
-        android:key="pref_name"
-        android:negativeButtonText="Anuluj"
-        android:positiveButtonText="OK"
-        android:title="Twoje imię" />
 
     <ListPreference
         android:defaultValue="metric"
@@ -24,12 +18,5 @@
         android:key="unit_system"
         android:summary="Wybierz system metryczny"
         android:title="System metryczny" />
-
-    <!--<MultiSelectListPreference
-        android:dialogTitle="Smaki lodów"
-        android:entries="@array/unit_system"
-        android:key="pref_ice_cream_flavours"
-        android:entryValues="@array/unit_system_key"
-        android:title="Smaki lodów" />-->
 
 </PreferenceScreen>

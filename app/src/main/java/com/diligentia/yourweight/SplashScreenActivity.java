@@ -11,7 +11,6 @@ import android.preference.PreferenceManager;
 public class SplashScreenActivity extends Activity {
 
     private static int SPLASH_TIME_OUT = 1000;
-    private static final String PREF_NAME = "pref_name";
     private static final String PREF_UINT_SYSTEM = "unit_system";
     private static final String PREF_LOGIN = "pref_login";
 
@@ -23,7 +22,6 @@ public class SplashScreenActivity extends Activity {
         final Resources res = getResources();
         final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        String nameValue = sharedPreferences.getString(PREF_NAME, "");
         String animalValue = sharedPreferences.getString(PREF_UINT_SYSTEM, "");
         final boolean login = sharedPreferences.getBoolean(PREF_LOGIN, true);
 
@@ -32,7 +30,6 @@ public class SplashScreenActivity extends Activity {
             @Override
             public void run() {
                 Class cls;
-//                if (res.getBoolean(R.bool.withLogin)) {
                 if (login) {
                     cls = LoginActivity.class;
                 } else {

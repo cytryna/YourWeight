@@ -46,10 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        repository = Repository.getInstance(this);
         super.onCreate(savedInstanceState);
+        repository = Repository.getInstance(this);
         setContentView(R.layout.activity_main);
-
         mDrawerList = (ListView) findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mActivityTitle = getTitle().toString();
@@ -94,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void addDrawerItems() {
-        String[] osArray = {USER.getName(), CHART.getName(), SETTINGS.getName(), DELETE_ITEMS.getName()};
+        String[] osArray = {USER.getName() +": "+ repository.getLastLoginUser(), CHART.getName(), SETTINGS.getName(), DELETE_ITEMS.getName()};
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
         mDrawerList.setAdapter(mAdapter);
 

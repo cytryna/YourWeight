@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import butterknife.ButterKnife;
@@ -62,7 +61,7 @@ public class SignupActivity extends AppCompatActivity {
         startActivityForResult(intent, 0);
 
         repository.addUser(new User(name, password));
-        repository.setLoginUser(name);
+        repository.setLastLoginUser(name);
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
