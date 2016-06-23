@@ -90,8 +90,13 @@ public class LoginActivity extends AppCompatActivity {
         String password = _passwordText.getText().toString();
 
         for (User user : repository.getUserList()) {
+
+            Toast.makeText(getApplicationContext(), "login"+user.getName(), Toast.LENGTH_SHORT).show();
+            Log.i("radek", "1.set = "+user.getName());
             if (login.equalsIgnoreCase(user.getName())) {
+
                 if (password.equals(user.getPassword())) {
+                    repository.setLoginUser(login);
                     new android.os.Handler().postDelayed(
                             new Runnable() {
                                 public void run() {
@@ -132,6 +137,10 @@ public class LoginActivity extends AppCompatActivity {
         _loginButton.setEnabled(true);
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivityForResult(intent, 0);
+//        Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
+//                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
+//                        startActivity(i);
+//                        finish();
 //        finish();
     }
 

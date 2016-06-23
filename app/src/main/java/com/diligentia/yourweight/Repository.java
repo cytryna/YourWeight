@@ -3,6 +3,7 @@ package com.diligentia.yourweight;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.diligentia.domain.Item;
@@ -20,11 +21,12 @@ public class Repository {
 
     private static Repository instance;
     public static final String DATABASE = "database" ;
-    public static final String WEIGHT_DATA = "weightdata";
-    public static final String USER_DATA = "userdata";
+    private String loginUser;
+    private static final String WEIGHT_DATA = "weightdata";
+    private static final String USER_DATA = "userdata";
     private SharedPreferences sharedpreferences;
     List<Item> weightList = new ArrayList<>();
-    private List<User> userList;
+    private List<User> userList = new ArrayList<>();
 
 
     private Repository(Activity activity) {
@@ -58,7 +60,7 @@ public class Repository {
 //    }
 
     public List<Item> getWeightList() {
-        Set<String> data = sharedpreferences.getStringSet(WEIGHT_DATA, new HashSet<String>());
+        Set<String> data = sharedpreferences.getStringSet(getUserWeightKey(), new HashSet<String>());
         List<String> strings = asSortedList(data);
 
         weightList = new ArrayList<Item>();
@@ -83,16 +85,19 @@ public class Repository {
             strings.add(item.getSetItem());
         }
         sharedpreferences.edit().clear();
-        sharedpreferences.edit().putStringSet(WEIGHT_DATA, strings).commit();
+        sharedpreferences.edit().putStringSet(getUserWeightKey(), strings).commit();
 
     }
 
     public void deleteWeight() {
         sharedpreferences.edit().clear();
-        sharedpreferences.edit().putStringSet(WEIGHT_DATA, null).commit();
+        sharedpreferences.edit().putStringSet(getUserWeightKey(), null).commit();
 
     }
 
+    private String getUserWeightKey() {
+        return WEIGHT_DATA+loginUser.toLowerCase();
+    }
 
 
     public List<User> getUserList() {
@@ -118,4 +123,13 @@ public class Repository {
 
     }
 
+
+
+    public void setLoginUser(String loginUser) {
+        this.loginUser = loginUser;
+    }
+
+    public String getLoginUser() {
+        return loginUser;
+    }
 }

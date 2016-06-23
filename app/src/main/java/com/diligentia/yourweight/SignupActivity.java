@@ -62,6 +62,7 @@ public class SignupActivity extends AppCompatActivity {
         startActivityForResult(intent, 0);
 
         repository.addUser(new User(name, password));
+        repository.setLoginUser(name);
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
