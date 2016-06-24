@@ -3,10 +3,13 @@ package com.diligentia.yourweight;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.diligentia.domain.Item;
+import com.diligentia.domain.UnitMetric;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,6 +30,8 @@ public class Repository {
     private SharedPreferences sharedpreferences;
     List<Item> weightList = new ArrayList<>();
     private List<User> userList = new ArrayList<>();
+    private UnitMetric unitMetric;
+    private boolean autologin;
 
 
     private Repository(Activity activity) {
@@ -65,7 +70,7 @@ public class Repository {
 
         weightList = new ArrayList<Item>();
         for (String s : strings) {
-            weightList.add(new Item(s));
+            weightList.add(new Item(s, unitMetric));
         }
 //
 //        Log.i("sharedpreferences", "1.set = "+sharedpreferences.getStringSet(WEIGHT_DATA, new HashSet<String>()));
@@ -134,5 +139,25 @@ public class Repository {
     public String getLastLoginUser() {
         String user = sharedpreferences.getString(LAST_USER, new String());
         return user;
+    }
+
+    public UnitMetric getUnitMetric() {
+        return unitMetric;
+    }
+
+    public void setUnitMetric(String unitMetric) {
+        if (UnitMetric.IMPERIAL.name().equals(unitMetric)) {
+            this.unitMetric = UnitMetric.IMPERIAL;
+        } else {
+            this.unitMetric = UnitMetric.METRIC;
+        }
+    }
+
+    public void setAutologin(boolean autologin) {
+        this.autologin = autologin;
+    }
+
+    public boolean getAutologin() {
+        return autologin;
     }
 }

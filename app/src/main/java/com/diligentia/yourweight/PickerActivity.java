@@ -62,7 +62,7 @@ public class PickerActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                repository.addWeight(new Item(new BigDecimal(value)));
+                repository.addWeight(new Item(new BigDecimal(value), repository.getUnitMetric()));
                 finish();
                 Toast.makeText(getApplicationContext(), getString(R.string.MainActivity_insertTodayWeighht) + " " + value, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);

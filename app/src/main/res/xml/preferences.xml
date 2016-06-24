@@ -11,11 +11,11 @@
         android:title="Logowanie" />
 
     <ListPreference
+        android:key="unit_system"
         android:defaultValue="metric"
         android:dialogTitle="System metryczny"
         android:entries="@array/unit_system"
         android:entryValues="@array/unit_system_key"
-        android:key="unit_system"
         android:summary="Wybierz system metryczny"
         android:title="System metryczny" />
 

@@ -13,24 +13,27 @@ public class SplashScreenActivity extends Activity {
     private static int SPLASH_TIME_OUT = 1000;
     private static final String PREF_UINT_SYSTEM = "unit_system";
     private static final String PREF_LOGIN = "pref_login";
+    private Repository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        repository = Repository.getInstance(this);
         setContentView(R.layout.activity_splash);
 
-        final Resources res = getResources();
         final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         String animalValue = sharedPreferences.getString(PREF_UINT_SYSTEM, "");
+        repository.setUnitMetric(animalValue);
         final boolean login = sharedPreferences.getBoolean(PREF_LOGIN, true);
+        repository.setAutologin(login);
 
         new Handler().postDelayed(new Runnable() {
 
             @Override
             public void run() {
                 Class cls;
-                if (login) {
+                if (repository.getAutologin()) {
                     cls = LoginActivity.class;
                 } else {
 //                    cls = MainActivity.class;
