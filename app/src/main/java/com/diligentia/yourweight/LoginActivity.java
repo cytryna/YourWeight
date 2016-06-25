@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
 
         for (User user : repository.getUserList()) {
 
-            Toast.makeText(getApplicationContext(), "login"+user.getName(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "login "+user.getName(), Toast.LENGTH_SHORT).show();
             Log.i("radek", "1.set = "+user.getName());
             if (login.equalsIgnoreCase(user.getName())) {
 
