@@ -3,7 +3,6 @@ package com.diligentia.yourweight;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -11,7 +10,7 @@ import android.preference.PreferenceManager;
 public class SplashScreenActivity extends Activity {
 
     private static int SPLASH_TIME_OUT = 1000;
-    private static final String PREF_UINT_SYSTEM = "unit_system";
+    private static final String UNIT_SYSTEM = "unit_system";
     private static final String PREF_LOGIN = "pref_login";
     private Repository repository;
 
@@ -23,7 +22,7 @@ public class SplashScreenActivity extends Activity {
 
         final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        String animalValue = sharedPreferences.getString(PREF_UINT_SYSTEM, "");
+        String animalValue = sharedPreferences.getString(UNIT_SYSTEM, new String());
         repository.setUnitMetric(animalValue);
         final boolean login = sharedPreferences.getBoolean(PREF_LOGIN, true);
         repository.setAutologin(login);

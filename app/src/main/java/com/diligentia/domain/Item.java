@@ -1,6 +1,7 @@
 package com.diligentia.domain;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,6 +27,7 @@ public class Item {
             e.printStackTrace();
         }
         weight = new BigDecimal(split[1]).multiply(unitMetric.getMultiplier());
+        weight = weight.setScale(2, RoundingMode.CEILING);
     }
 
 
@@ -38,7 +40,8 @@ public class Item {
     }
 
     public BigDecimal getWeight() {
-        return weight.divide(unitMetric.getMultiplier());
+//        BigDecimal divide = weight.divide(unitMetric.getMultiplier(), 2, BigDecimal.ROUND_HALF_UP);
+        return weight;
     }
 
     public String getSetItem() {

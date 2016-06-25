@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                     repository.deleteWeight();
                     intent = new Intent(getApplicationContext(), MainActivity.class);
                 } else {
-                    intent = new Intent(getApplicationContext(), SplashScreenActivity.class);// TODO: 10.05.16 Activity o mnie
+                    intent = new Intent(getApplicationContext(), SplashScreenActivity.class);// TODO: 10.05.16 Activity o mniewww
                 }
                 startActivity(intent);
             }
@@ -132,6 +132,8 @@ public class MainActivity extends AppCompatActivity {
                 super.onDrawerClosed(view);
                 getSupportActionBar().setTitle(mActivityTitle);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                Intent intent = new Intent(getApplicationContext(), SplashScreenActivity.class);
+                startActivity(intent);
             }
         };
 

@@ -15,4 +15,9 @@ public enum UnitMetric {
     public BigDecimal getMultiplier() {
         return multiplier;
     }
+
+    @Override
+    public String toString() {
+        return name().toLowerCase();
+    }
 }

@@ -13,14 +13,14 @@ import java.util.List;
 
 public class ItemsAdapter extends ArrayAdapter<Item> {
 
-    public ItemsAdapter(Context context, List<Item> users) {
-        super(context, 0, users);
+    public ItemsAdapter(Context context, List<Item> items) {
+        super(context, 0, items);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        Item user = getItem(position);
+        Item item = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_weight_history_item, parent, false);
@@ -29,8 +29,8 @@ public class ItemsAdapter extends ArrayAdapter<Item> {
         TextView txDate = (TextView) convertView.findViewById(R.id.txDate);
         TextView txWeight = (TextView) convertView.findViewById(R.id.txWeight);
         // Populate the data into the template view using the data object
-        txDate.setText(user.getDateString().toString());
-        txWeight.setText(user.getWeight().toString());
+        txDate.setText(item.getDateString().toString());
+        txWeight.setText(item.getWeight().toString());
         // Return the completed view to render on screen
         return convertView;
     }

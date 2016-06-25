@@ -146,7 +146,7 @@ public class Repository {
     }
 
     public void setUnitMetric(String unitMetric) {
-        if (UnitMetric.IMPERIAL.name().equals(unitMetric)) {
+        if (UnitMetric.IMPERIAL.toString().equals(unitMetric)) {
             this.unitMetric = UnitMetric.IMPERIAL;
         } else {
             this.unitMetric = UnitMetric.METRIC;

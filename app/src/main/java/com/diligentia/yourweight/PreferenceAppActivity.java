@@ -3,6 +3,7 @@ package com.diligentia.yourweight;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
+import android.view.Menu;
 
 public class PreferenceAppActivity extends PreferenceActivity {
 
