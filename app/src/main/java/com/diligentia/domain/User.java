@@ -1,4 +1,4 @@
-package com.diligentia.yourweight;
+package com.diligentia.domain;
 
 public class User {
 

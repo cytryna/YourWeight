@@ -3,19 +3,15 @@ package com.diligentia.yourweight;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.diligentia.domain.Item;
 import com.diligentia.domain.UnitMetric;
+import com.diligentia.domain.User;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -45,25 +41,6 @@ public class Repository {
         return instance;
     }
 
-//    private void fillTemplateWeight() {
-//        weightList  = new LinkedList<Item>();
-//        Calendar cal = Calendar.getInstance();
-//        cal.setTime(new Date());
-//        cal.add(Calendar.DATE, -101);
-//
-//        BigDecimal min = new BigDecimal(80);
-//        BigDecimal max = new BigDecimal(130);
-//        BigDecimal randomBigDecimal;
-//
-//        Random r = new Random();
-//        double randomValue;
-//        for (int i = 0; i < 100; i++) {
-//            cal.add(Calendar.DATE, 1);
-//            randomBigDecimal = min.add(new BigDecimal(Math.random()).multiply(max.subtract(min)));
-//            weightList.add(new Item(cal.getTime(), randomBigDecimal.setScale(2,BigDecimal.ROUND_HALF_UP)));
-//        }
-//    }
-
     public List<Item> getWeightList() {
         Set<String> data = sharedpreferences.getStringSet(getUserWeightKey(), new HashSet<String>());
         List<String> strings = asSortedList(data);
@@ -87,7 +64,7 @@ public class Repository {
         weightList.add(item1);
         Set<String> strings = new HashSet<String>();
         for (Item item : weightList) {
-            strings.add(item.getSetItem());
+            strings.add(item.getStringItem());
         }
         sharedpreferences.edit().clear();
         sharedpreferences.edit().putStringSet(getUserWeightKey(), strings).commit();

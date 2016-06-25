@@ -35,7 +35,6 @@ public class SplashScreenActivity extends Activity {
                 if (repository.getAutologin()) {
                     cls = LoginActivity.class;
                 } else {
-//                    cls = MainActivity.class;
                     cls = MainActivity.class;
                 }
                 Intent i = new Intent(SplashScreenActivity.this, cls);
@@ -43,7 +42,5 @@ public class SplashScreenActivity extends Activity {
                 finish();
             }
         }, SPLASH_TIME_OUT);
-
     }
-
 }

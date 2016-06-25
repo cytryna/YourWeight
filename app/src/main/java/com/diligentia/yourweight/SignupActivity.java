@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.diligentia.domain.User;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -18,9 +20,9 @@ public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
     private Repository repository;
 
-    @InjectView(R.id.input_name) EditText _nameText;
-    @InjectView(R.id.input_password) EditText _passwordText;
-    @InjectView(R.id.btn_signup) Button _signupButton;
+    @InjectView(R.id.input_name) EditText nameText;
+    @InjectView(R.id.input_password) EditText passwordText;
+    @InjectView(R.id.btn_signup) Button signupButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,7 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         ButterKnife.inject(this);
         repository = Repository.getInstance(this);
-        _signupButton.setOnClickListener(new View.OnClickListener() {
+        signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signup();
@@ -45,7 +47,7 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
-        _signupButton.setEnabled(false);
+        signupButton.setEnabled(false);
 
         final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this,
                 R.style.AppTheme);
@@ -53,8 +55,8 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog.setMessage("Creating Account...");
         progressDialog.show();
 
-        String name = _nameText.getText().toString();
-        String password = _passwordText.getText().toString();
+        String name = nameText.getText().toString();
+        String password = passwordText.getText().toString();
 
 
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -66,10 +68,7 @@ public class SignupActivity extends AppCompatActivity {
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        // On complete call either onSignupSuccess or onSignupFailed
-                        // depending on success
                         onSignupSuccess();
-                        // onSignupFailed();
                         progressDialog.dismiss();
                     }
                 }, 3000);
@@ -77,7 +76,7 @@ public class SignupActivity extends AppCompatActivity {
 
 
     public void onSignupSuccess() {
-        _signupButton.setEnabled(true);
+        signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
         finish();
     }
@@ -85,27 +84,27 @@ public class SignupActivity extends AppCompatActivity {
     public void onSignupFailed() {
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
 
-        _signupButton.setEnabled(true);
+        signupButton.setEnabled(true);
     }
 
     public boolean validate() {
         boolean valid = true;
 
-        String name = _nameText.getText().toString();
-        String password = _passwordText.getText().toString();
+        String name = nameText.getText().toString();
+        String password = passwordText.getText().toString();
 
         if (name.isEmpty() || name.length() < 3) {
-            _nameText.setError("at least 3 characters in login field");
+            nameText.setError("at least 3 characters in login field");
             valid = false;
         } else {
-            _nameText.setError(null);
+            nameText.setError(null);
         }
 
         if (password.isEmpty()) {
-            _passwordText.setError("at least 1 char in password field");
+            passwordText.setError("at least 1 char in password field");
             valid = false;
         } else {
-            _passwordText.setError(null);
+            passwordText.setError(null);
         }
 
         return valid;

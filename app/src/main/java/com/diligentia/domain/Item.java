@@ -35,16 +35,12 @@ public class Item {
         return SIMPLE_DATE_FORMAT.format(date);
     }
 
-    public Date getDate() {
-        return date;
-    }
-
     public BigDecimal getWeight() {
 //        BigDecimal divide = weight.divide(unitMetric.getMultiplier(), 2, BigDecimal.ROUND_HALF_UP);
         return weight;
     }
 
-    public String getSetItem() {
-        return  getDateString()+"_"+weight;
+    public String getStringItem() {
+        return getDateString() + "_" + weight;
     }
 }

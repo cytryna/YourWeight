@@ -64,26 +64,11 @@ public class MainActivity extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(adapter);
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Toast.makeText(getApplicationContext(),
-//                        "Wybrano element " + position + ", czyli " , Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
-        Button ok = (Button) findViewById(R.id.plusButton);
-        ok.setOnClickListener(new View.OnClickListener() {
+        Button plusButton = (Button) findViewById(R.id.plusButton);
+        plusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(getApplicationContext(), getString(R.string.MainActivity_insertTodayWeighht), Toast.LENGTH_SHORT).show();
-//                repository.addWeight(new Item(new Date(), new BigDecimal(93)));
-
-//                sharedpreferences.edit();
-
-
-//                finish();
-//                startActivity(getIntent());
                 Intent intent = new Intent(getApplicationContext(), PickerActivity.class);
                 startActivity(intent);
             }
@@ -120,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
     private void setupDrawer() {
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
 
-            /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
                 getSupportActionBar().setTitle("Navigation!");

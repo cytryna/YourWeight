@@ -35,20 +35,18 @@ public class ChartActivity extends AppCompatActivity {
         int i = 0;
         for (int i1 = weightList.size() - 1; i1 >= 0; i1--) {
             Item item = weightList.get(i1);
-//            Log.i("radek", ""+item.getWeight().floatValue());
             entries.add(new Entry(item.getWeight().floatValue(), i++));
             labels.add(item.getDateString());
         }
 
-        LineDataSet dataset = new LineDataSet(entries, "");
+        LineDataSet lineDataSet = new LineDataSet(entries, "Weight");
 
-        LineData data = new LineData(labels, dataset);
-        dataset.setColors(ColorTemplate.PASTEL_COLORS);
-        dataset.setDrawCubic(true);
-        dataset.setDrawFilled(true);
+        LineData data = new LineData(labels, lineDataSet);
+        lineDataSet.setColors(ColorTemplate.PASTEL_COLORS);
+        lineDataSet.setDrawCubic(true);
+        lineDataSet.setDrawFilled(true);
 
         lineChart.setData(data);
         lineChart.animateY(5000);
-
     }
 }
